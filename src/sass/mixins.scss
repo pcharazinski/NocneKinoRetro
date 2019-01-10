@@ -1,0 +1,21 @@
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@mixin cinema-border{
+    border: 3px solid white;
+}
+
+@mixin seat {
+    width: 45px;
+    height: 45px;
+    @include cinema-border;
+}

@@ -1,0 +1,159 @@
+@import 'mixins';
+@import 'variables';
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin:0;
+    color: white;
+    font-family: 'Advent Pro', sans-serif;
+    letter-spacing: 3px;
+}
+
+h1{
+    font-size: 45px;
+}
+
+h2{
+    font-size: 35px;
+}
+
+h3{
+    font-size: 25px;;
+}
+
+#root{
+    width: 100%;
+    height: 100%;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+}
+
+.hero{
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    @include flex-center;
+    
+}
+
+.window{
+    position: relative;
+    width: 80%;
+    height: 80%;
+    background-color: rgba(13,15,21,0.98);
+    border: 7px solid white;
+    .X{
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 10px;
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+    }
+    .content{
+        width: 100%;
+        height: 100%;
+        @include flex-column;
+        flex-wrap: wrap;
+    }
+}
+
+.cinema{
+    width: 66%;
+    height: 90%;
+    border-right: 3px solid white;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    padding: 0 2%;
+    .screen{
+        width: 100%;
+        height: 15%;
+        @include cinema-border;
+        @include flex-center;
+    }
+    .seats{
+        width: 96%;
+        height: 75%;
+        display: grid;
+        grid-template-columns: repeat(11, 45px);
+        grid-gap: 10px;
+    }
+    .seat{
+        @include seat;
+        &:hover{
+            background-color: rgba(131, 131, 131, 0.2);
+            cursor: pointer;
+        }
+    }
+    .bookedSeat{
+        background-image: url('../img/x.png');
+        background-size: cover;
+        @include seat;
+    }
+    .selectedSeat{
+        background-image: url('../img/ok.png');
+        background-size: cover;
+       @include seat;
+    }
+}
+
+.info{
+    width: 30%;
+    height: 90%;
+    margin: 0 2%;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    .resInfo{
+        list-style: none;
+        li:nth-child(2){
+            margin: 8% 0;
+        }
+    }
+    button{
+        width: 200px;
+        background: none;
+        border: none;
+        align-self: center;
+        transform: translateY(-20%);
+        img{
+            width: inherit;
+            z-index: -3;
+        }
+        &:focus{
+            outline: none;
+        }
+        &:active{
+            transform: scale(0.9) translateY(-20%);
+        }
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+.seatsStatus{
+    line-height: 40px;
+    li{
+        display: flex;
+        align-items: center;
+        img{
+            width: 40px;
+        }
+        h3{
+            padding: 0 10px;
+        }
+    }
+    li:nth-child(2){
+        margin: 6% 0;
+    }
+    
+}
