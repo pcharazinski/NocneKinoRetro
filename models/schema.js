@@ -3,47 +3,29 @@ const reservationSchema = new mongoose.Schema({
     user: {
         name: {
             type: String,
-            required: true,
+            required: false,
         },
         surname: {
             type: String,
-            required: true,
+            required: false,
         },
         mail: {
             type: String,
-            required: true,
+            required: false,
         }
     },
     movie: {
         title: String,
         date: Date,
-        required: true,
+        // required: false,
         seat: {
-            place: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            // place: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            place: Number,
             isReserved: Boolean,
         }
     },
 });
 
-const Example = mongoose.model('Example', reservationSchema);
-async function createcostam(){
-const example = new Example({
-    user: {
-            name: 'Kinga',
-            surname: 'Jask',
-            mail: 'zarazoszaleje@gmail.com',
-        },
-    movie: {
-            title: 'shrek',
-            
-            seat: {
-                place: [],
-            }
-        }
-    });
-   const result = await example.save();
-   console.log(result);
-}
 
-createcostam();
+// module.exports = createcostam;
 module.exports = mongoose.model('reservation', reservationSchema);

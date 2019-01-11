@@ -1,9 +1,16 @@
 const Schema=require("../models/schema");
 
 //sprawdzenie czy to miejsce jest zajete czy nie
-const getReservation=(req,res)=>{
-    Schema.find({seat: req.params.movie.seat}, (err, schemas)=>{
-        if(err) console.log(err);
+// const getReservation=(req,res)=>{
+//     Schema.find({seat: req.params.movie.seat}, (err, schemas)=>{
+//         if(err) console.log(err);
+//         console.log(schemas);
+//         res.send(schemas)
+//     })
+// };
+const getReservation = (req, res) => {
+    Schema.find({}, (err, schemas) => {
+        if (err) console.log(err);
         console.log(schemas);
         res.send(schemas)
     })
