@@ -1,5 +1,6 @@
 @import 'mixins';
 @import 'variables';
+@import 'elements';
 
 *{
     box-sizing: border-box;
@@ -8,18 +9,6 @@
     color: white;
     font-family: 'Advent Pro', sans-serif;
     letter-spacing: 3px;
-}
-
-h1{
-    font-size: 45px;
-}
-
-h2{
-    font-size: 35px;
-}
-
-h3{
-    font-size: 25px;;
 }
 
 #root{
@@ -35,7 +24,8 @@ h3{
 .hero{
     height: 100vh;
     width: 100%;
-    background-color: black;
+    background-image: url('../img/bg-hero.jpg');
+    background-size: cover;
     @include flex-center;
     
 }
@@ -43,9 +33,10 @@ h3{
 .window{
     position: relative;
     width: 80%;
-    height: 80%;
-    background-color: rgba(13,15,21,0.98);
+    height: 85%;
+    background-image: linear-gradient(to bottom, rgba(13,15,21,0.9), rgba(7,8,10,0.98));
     border: 7px solid white;
+    overflow-y: scroll;
     .X{
         position: absolute;
         right: 0;
@@ -61,6 +52,11 @@ h3{
         height: 100%;
         @include flex-column;
         flex-wrap: wrap;
+        @include mQ(1024px){
+            flex-wrap: nowrap;
+            min-height: 100%;
+            height: auto;
+        }
     }
 }
 
@@ -69,91 +65,148 @@ h3{
     height: 90%;
     border-right: 3px solid white;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     flex-wrap: wrap;
     padding: 0 2%;
     .screen{
         width: 100%;
-        height: 15%;
+        min-height: 50px;
+        max-height: 15%;
         @include cinema-border;
         @include flex-center;
+        @include mQ(1024px){
+            margin: 20px 0;
+        }
     }
     .seats{
         width: 96%;
         height: 75%;
         display: grid;
-        grid-template-columns: repeat(11, 45px);
-        grid-gap: 10px;
+        grid-template-columns: repeat(11, minmax(min-content, 45px));;
+        //column-gap: 5px;
+        row-gap: 10px;
+        justify-content: space-evenly;
     }
-    .seat{
-        @include seat;
-        &:hover{
-            background-color: rgba(131, 131, 131, 0.2);
-            cursor: pointer;
-        }
+    @include mQ(1024px){
+        border: none;
+        width: fit-content;  
     }
-    .bookedSeat{
-        background-image: url('../img/x.png');
-        background-size: cover;
-        @include seat;
+    @include mQ(700px){
+        
+        row-gap: 5px;
+        column-gap: 0;
     }
-    .selectedSeat{
-        background-image: url('../img/ok.png');
-        background-size: cover;
-       @include seat;
+}
+
+.seat{
+    @include seat;
+    &:hover{
+        background-color: rgba(131, 131, 131, 0.1);
+        cursor: pointer;
     }
+}
+.bookedSeat{
+    background-image: url('../img/x.png');
+    background-size: cover;
+    @include seat;
+}
+.selectedSeat{
+    background-image: url('../img/ok.png');
+    background-size: cover;
+   @include seat;
 }
 
 .info{
     width: 30%;
     height: 90%;
-    margin: 0 2%;
-    padding: 1%;
+    margin: 0 15px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-items: center;
     .resInfo{
         list-style: none;
         li:nth-child(2){
-            margin: 8% 0;
+            margin: 15px 0;
         }
     }
     button{
-        width: 200px;
-        background: none;
+        width: fit-content;
+        min-height: fit-content;
         border: none;
         align-self: center;
-        transform: translateY(-20%);
-        img{
-            width: inherit;
-            z-index: -3;
+        .rezBtn{
+            background-image: url('../img/rezerwujBtn.png');
+            background-size: cover;
+            background-position: center;
+            width: 200px;
+            height: 150px;
+            @include mQ(1024px){
+                width: 300px;
+                height: 225px;
+            }
         }
         &:focus{
             outline: none;
         }
         &:active{
-            transform: scale(0.9) translateY(-20%);
+           transform: scale(0.9);
         }
         &:hover{
             cursor: pointer;
         }
+       
+    }
+    @include mQ(1024px){
+        width: 96%;
     }
 }
 
 .seatsStatus{
-    line-height: 40px;
-    li{
+    min-height: fit-content;
+    @include flex-column;
+    .seatStatus{
         display: flex;
+        justify-content: flex-start;
         align-items: center;
-        img{
-            width: 40px;
+        margin: 6px;
+        .seat{
+            @include mQ(1024px){
+                width: 30px;
+                height: 30px;
+            }
         }
-        h3{
-            padding: 0 10px;
+        &:hover{
+            background-color: rgba(131, 131, 131, 0.0);
+            cursor: default;
         }
     }
-    li:nth-child(2){
-        margin: 6% 0;
+    h3{
+        padding-left: 15px;
     }
-    
+    @include mQ(1024px){
+        flex-direction: row;
+        justify-content: flex-start;
+        margin: 10px 0 20px 0;
+    }
 }
+
+    //scrollbar
+    ::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+       
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888; 
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }

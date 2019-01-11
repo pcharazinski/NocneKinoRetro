@@ -1,27 +1,83 @@
 import React from 'react';
-import btn from '../img/rezerwujBtn.png';
-import zajete from '../img/zajete.png';
-import wybrane from '../img/wybrane.png';
-import wolne from '../img/wolne.png';
 
 class Info extends React.Component{
 
-    render(){
+    constructor(props) {
+        super(props);
+        this.state = {width: window.innerWidth};
+        this.updateWidth = this.updateWidth.bind(this)
+      }
+
+    updateWidth() {
+        this.setState({width: window.innerWidth});
+        console.log(this.state.width);
+    }
+    componentWillMount(){
+        this.updateWidth();
+    }
+    componentDidMount(){
+        window.addEventListener("resize", this.updateWidth);
+    }
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateWidth);
+    }
+
+    renderMobile(){
         return (
-                <div className = 'info'>
-                    <ul className='resInfo'>
-                        <li><h2>Tytuł:</h2></li>
-                        <li><h2>Czas:</h2></li>
-                        <li><h2>Miejsca:</h2></li>
-                    </ul>
-                    <button id = 'rezerwujBtn'><img src={btn} alt="rezerwuj"/></button>
-                    <ul className="seatsStatus">
-                        <li><img src={zajete} alt='zajęte'/><h3>Zajęte</h3></li>
-                        <li><img src={wybrane} alt='wybrane'/><h3>Wybrane</h3></li>
-                        <li><img src={wolne} alt='wolne'/><h3>Wolne</h3></li>
-                    </ul>
+            <div className = 'info'>
+                 <div className='seatsStatus'>
+                    <div className='seatStatus'>
+                        <div className = 'seat'/>
+                        <h3>Wolne</h3>
+                    </div>
+                    <div className='seatStatus'>
+                        <div className = 'seat bookedSeat'/>
+                        <h3>Zajęte</h3>
+                    </div>
+                    <div className='seatStatus'>
+                        <div className = 'seat selectedSeat'/>
+                        <h3>Wybrane</h3>
+                    </div>
                 </div>
-        );
+                <ul className='resInfo'>
+                    <li><h2>Tytuł:</h2></li>
+                    <li><h2>Czas:</h2></li>
+                    <li><h2>Miejsca:</h2></li>
+                </ul>
+                <button><div className='rezBtn'/></button>
+            </div>
+    );
+    }
+
+    renderDesktop(){
+        return (
+            <div className = 'info'>
+                <ul className='resInfo'>
+                    <li><h2>Tytuł:</h2></li>
+                    <li><h2>Czas:</h2></li>
+                    <li><h2>Miejsca:</h2></li>
+                </ul>
+                <button><div className='rezBtn'/></button>
+                <div className='seatsStatus'>
+                    <div className='seatStatus'>
+                        <div className = 'seat'/>
+                        <h3>Wolne</h3>
+                    </div>
+                    <div className='seatStatus'>
+                        <div className = 'seat bookedSeat'/>
+                        <h3>Zajęte</h3>
+                    </div>
+                    <div className='seatStatus'>
+                        <div className = 'seat selectedSeat'/>
+                        <h3>Wybrane</h3>
+                    </div>
+                </div>
+            </div>
+    );
+    }
+
+    render(){
+        return this.state.width > 1024 ? this.renderDesktop() : this.renderMobile();
     }
 }
 export default Info;

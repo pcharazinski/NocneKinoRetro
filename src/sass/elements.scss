@@ -1,0 +1,26 @@
+@import 'mixins';
+
+button{
+    background: none;
+}
+
+h1{
+    font-size: 45px;
+    @include mQ(700px){
+        font-size: 35px;
+    }
+}
+
+h2{
+    font-size: 35px;
+    @include mQ(700px){
+        font-size: 25px;
+    }
+}
+
+h3{
+    font-size: 25px;
+    @include mQ(700px){
+        font-size: 15px;
+    }
+}

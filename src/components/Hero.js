@@ -7,13 +7,13 @@ class Hero extends React.Component{
 
     render(){
         return(
-                <div className='hero'>
-                    <Window>
-                        <Cinema/>
-                        <Info/>
-                    </Window>
-                </div>
-        );
+            <div className='hero'>
+                <Window>
+                    <Cinema/>
+                    <Info/>
+                </Window>
+            </div>
+    );
     }
 }
 
