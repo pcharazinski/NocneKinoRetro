@@ -105,11 +105,14 @@
         cursor: pointer;
     }
 }
+
 .bookedSeat{
     background-image: url('../img/x.png');
     background-size: cover;
     @include seat;
 }
+
+
 .selectedSeat{
     background-image: url('../img/ok.png');
     background-size: cover;

@@ -3,18 +3,34 @@ import React from 'react';
 class Cinema extends React.Component{
 
     selectSeat(e){
+        if(e.target.className==='seat') e.target.textContent='';
+        else e.target.textContent = e.target.id.slice(1);
         e.target.classList.toggle("selectedSeat");
+        
     }
 
     renderSeats(){
         let seats = [];
-        let counter = 1;
+        const rows = ['A', 'B', 'C', 'D', 'E'];
+        let counter = 0;
         for(let i =0; i<55; i++){
+            let seatNumber = i;
             if(i===0 || i===11 || i===22 || i===33 || i===44){
-            seats.push(<h2>{`${counter}.`}</h2>)
-            counter++;
+                seats.push(<h2 key={`${rows[counter]}0`}>{`${rows[counter]}.`}</h2>);
+                counter++;
             }
-            else seats.push(<div key={i} className='seat' onClick={this.selectSeat}/>);
+            else{
+                if(i>10 && i<22)
+                    seats.push(<div id={`B${seatNumber-11}`} key={`B${seatNumber-11}`} className='seat' onClick={this.selectSeat}>{seatNumber-11}</div>);
+                else if(i>22 && i<33)
+                    seats.push(<div id={`C${seatNumber-22}`} key={`C${seatNumber-22}`} className='seat' onClick={this.selectSeat}>{seatNumber-22}</div>);
+                else if(i>33 && i<44)
+                    seats.push(<div id={`D${seatNumber-33}`} key={`D${seatNumber-33}`} className='seat' onClick={this.selectSeat}>{seatNumber-33}</div>);
+                else if(i>44 && i<55)
+                    seats.push(<div id={`E${seatNumber-44}`} key={`E${seatNumber-44}`} className='seat' onClick={this.selectSeat}>{seatNumber-44}</div>);
+                else
+                    seats.push(<div id={`A${seatNumber}`} key={`A${seatNumber}`} className='seat' onClick={this.selectSeat}>{seatNumber}</div>);
+            }
         }
         return seats;
     }
@@ -26,7 +42,7 @@ class Cinema extends React.Component{
                         <div className='seats'>{this.renderSeats()}</div>
                     </div>
         );
-    }
+    } 
 }
 
 export default Cinema;

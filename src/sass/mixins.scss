@@ -17,6 +17,7 @@
 @mixin seat {
     width: 45px;
     height: 45px;
+    @include flex-center;
     @include cinema-border;
     @include mQ(835px){
         width: 35px;
