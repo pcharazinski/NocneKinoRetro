@@ -1,13 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getSeatNum } from '../actions';
 
 class Cinema extends React.Component{
 
-    selectSeat(e){
-        if(e.target.className==='seat') e.target.textContent='';
-        else e.target.textContent = e.target.id.slice(1);
-        e.target.classList.toggle("selectedSeat");
-        
+    constructor(props){
+        super(props)
+        this.state = {seat: []};
     }
+
+     selectSeat = (e) => {
+        if(e.target.className==='seat')
+            e.target.textContent='';
+        else 
+            e.target.textContent = e.target.id.slice(1);
+
+        e.target.classList.toggle("selectedSeat");
+
+        this.setState({seat: [...this.state.seat, e.target.id]});
+        this.props.getSeatNum(this.state.seat);
+    }
+
 
     renderSeats(){
         let seats = [];
@@ -45,4 +58,9 @@ class Cinema extends React.Component{
     } 
 }
 
-export default Cinema;
+const mapStateToProps = (state) => {
+    console.log(state);
+    return state;
+}
+
+export default connect(mapStateToProps, {getSeatNum})(Cinema);

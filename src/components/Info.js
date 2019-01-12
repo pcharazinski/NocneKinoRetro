@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Info extends React.Component{
 
@@ -42,7 +43,7 @@ class Info extends React.Component{
                 <ul className='resInfo'>
                     <li><h2>Tytuł:</h2></li>
                     <li><h2>Czas:</h2></li>
-                    <li><h2>Miejsca:</h2></li>
+                    <li><h2>Miejsca: {`${this.props.seat} `}</h2></li>
                 </ul>
                 <button><div className='rezBtn'/></button>
             </div>
@@ -55,7 +56,7 @@ class Info extends React.Component{
                 <ul className='resInfo'>
                     <li><h2>Tytuł:</h2></li>
                     <li><h2>Czas:</h2></li>
-                    <li><h2>Miejsca:</h2></li>
+                    <li><h2>Miejsca: {`${this.props.seat} `}</h2></li>
                 </ul>
                 <button><div className='rezBtn'/></button>
                 <div className='seatsStatus'>
@@ -77,7 +78,13 @@ class Info extends React.Component{
     }
 
     render(){
+        console.log(this.props);
         return this.state.width > 1024 ? this.renderDesktop() : this.renderMobile();
     }
 }
-export default Info;
+
+const mapStateToProps = (state) => {
+   return {seat: state.seatsSelected};
+};
+
+export default connect(mapStateToProps)(Info);
