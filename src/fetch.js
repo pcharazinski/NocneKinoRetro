@@ -1,40 +1,31 @@
 class Fetch{
 
-    static przeslijDane(user, movie){
-        fetch('/', { // endpoint testowy
+    static przeslijDane(reservation){
+        fetch('/reservation', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user: {
-                    "name": `${user.name}`,
-                    "surname": `${user.surname}`,
-                    "mail": `${user.mail}`,
-                    "title": `${taskName}`
-                },
-                movie: {
-                    "title": `${movie.title}`,
-                    "date": `${movie.date}`,
-                    "seat": `${movie.seat}`
-                },
-
-                isReserved: `true`
-
+                "name": `${reservation.name}`,
+                "surname": `${reservation.surname}`,
+                "mail": `${reservation.mail}`,
+                "title": `${reservation.title}`,
+                "date": `${reservation.date}`,
+                "row": `${reservation.row}`,
+                "seatInRow": `${reservation.seatInRow}`,
+                "isReserved": `${reservation.isReserved}`
             })
         }).then((resp) => console.log(resp))
     }
 
 
     static pobierzDane(){
-        fetch('/')    // endpoint testowy
-            .then(resp => resp.json())
-            .then(resp => {
-                console.log(resp);
-            })
+        return new Promise((resolve, reject) => {
+            fetch('/').then((resp) => resp.json()).then(data => resolve(data)).catch(err => reject(err));
+        })
     }
-
 
 }
 
