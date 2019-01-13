@@ -23,6 +23,13 @@ class Info extends React.Component{
         window.removeEventListener("resize", this.updateWidth);
     }
 
+    checkIfNull(){
+        if(this.props.seat===null)
+            return '';
+        else  
+            return this.props.seat;
+    }
+
     renderMobile(){
         return (
             <div className = 'info'>
@@ -43,7 +50,7 @@ class Info extends React.Component{
                 <ul className='resInfo'>
                     <li><h2>Tytuł:</h2></li>
                     <li><h2>Czas:</h2></li>
-                    <li><h2>Miejsca: {`${this.props.seat}`}</h2></li>
+                    <li><h2>Miejsca: {`${this.checkIfNull()}`}</h2></li>
                 </ul>
                 <button><div className='rezBtn'/></button>
             </div>
@@ -56,7 +63,7 @@ class Info extends React.Component{
                 <ul className='resInfo'>
                     <li><h2>Tytuł:</h2></li>
                     <li><h2>Czas:</h2></li>
-                    <li><h2>Miejsca: {`${this.props.seat}`}</h2></li>
+                    <li><h2>Miejsca: {`${this.checkIfNull()}`}</h2></li>
                 </ul>
                 <button><div className='rezBtn'/></button>
                 <div className='seatsStatus'>
