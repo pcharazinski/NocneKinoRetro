@@ -20,7 +20,8 @@ class Cinema extends React.Component{
     }
     
      selectSeat = (e) => {
-        this.setState({seat: [...this.state.seat, e.target.id]});
+        const { seat } = this.state;
+
         if(e.target.className==='seat')
             e.target.textContent='';
         else 
@@ -28,10 +29,25 @@ class Cinema extends React.Component{
 
         e.target.classList.toggle("selectedSeat");
 
-        if(this.checkIfClicked(this.state.seat, e.target.id) === false)
-            this.setState({seat: this.state.seat.filter(elem => elem !== e.target.id)});
+        if(this.checkIfClicked(seat, e.target.id) === false)
+            this.setState({seat: seat.filter(elem => elem !== e.target.id)});
         else 
-            this.setState({seat: [...this.state.seat, e.target.id]});
+            this.setState({seat: [...seat, e.target.id]});
+    }
+
+    renderRow(seats, seatNumber, row, value){
+        return (
+            seats.push(
+                        <div 
+                            id={`${row}${seatNumber-value}`} 
+                            key={`${row}${seatNumber-value}`} 
+                            className='seat' 
+                            onClick={this.selectSeat}
+                        >
+                            {seatNumber-value}
+                        </div>
+                    )
+        );
     }
 
     renderSeats(){
@@ -46,15 +62,15 @@ class Cinema extends React.Component{
             }
             else{
                 if(i>10 && i<22)
-                    seats.push(<div id={`B${seatNumber-11}`} key={`B${seatNumber-11}`} className='seat' onClick={this.selectSeat}>{seatNumber-11}</div>);
+                    this.renderRow(seats, seatNumber, 'B', 11);
                 else if(i>22 && i<33)
-                    seats.push(<div id={`C${seatNumber-22}`} key={`C${seatNumber-22}`} className='seat' onClick={this.selectSeat}>{seatNumber-22}</div>);
+                    this.renderRow(seats, seatNumber, 'C', 22);
                 else if(i>33 && i<44)
-                    seats.push(<div id={`D${seatNumber-33}`} key={`D${seatNumber-33}`} className='seat' onClick={this.selectSeat}>{seatNumber-33}</div>);
+                    this.renderRow(seats, seatNumber, 'D', 33);
                 else if(i>44 && i<55)
-                    seats.push(<div id={`E${seatNumber-44}`} key={`E${seatNumber-44}`} className='seat' onClick={this.selectSeat}>{seatNumber-44}</div>);
+                    this.renderRow(seats, seatNumber, 'E', 44);
                 else
-                    seats.push(<div id={`A${seatNumber}`} key={`A${seatNumber}`} className='seat' onClick={this.selectSeat}>{seatNumber}</div>);
+                    this.renderRow(seats, seatNumber, 'A', 0);
             }
         }
         return seats;

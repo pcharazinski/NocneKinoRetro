@@ -24,10 +24,12 @@ class Info extends React.Component{
     }
 
     checkIfNull(){
-        if(this.props.seat===null)
+        const { seat } = this.props;
+
+        if(seat===null)
             return '';
         else  
-            return this.props.seat;
+            return seat;
     }
 
     renderMobile(){
