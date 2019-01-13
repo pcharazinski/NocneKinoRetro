@@ -19,7 +19,10 @@ class Cinema extends React.Component{
 
         e.target.classList.toggle("selectedSeat");
 
-        this.setState({seat: [...this.state.seat, e.target.id]});
+        if(this.state.seat[this.state.seat.length-1]===e.target.id)
+            this.setState({seat: this.state.seat.filter(elem => elem !==e.target.id)});
+        else 
+            this.setState({seat: [...this.state.seat, e.target.id]});
     }
 
     componentDidUpdate(){
