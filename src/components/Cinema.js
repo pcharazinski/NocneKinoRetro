@@ -8,8 +8,17 @@ class Cinema extends React.Component{
         super(props)
         this.state = {seat: []};
     }
+
+    componentDidUpdate(){
+        this.props.getSeatNum(this.state.seat);
+    }
+
+    checkIfClicked(arr, clickedValue){
+        return arr.every(element => {
+            return element !== clickedValue;
+        })
+    }
     
-      
      selectSeat = (e) => {
         this.setState({seat: [...this.state.seat, e.target.id]});
         if(e.target.className==='seat')
@@ -19,14 +28,10 @@ class Cinema extends React.Component{
 
         e.target.classList.toggle("selectedSeat");
 
-        if(this.state.seat[this.state.seat.length-1]===e.target.id)
-            this.setState({seat: this.state.seat.filter(elem => elem !==e.target.id)});
+        if(this.checkIfClicked(this.state.seat, e.target.id) === false)
+            this.setState({seat: this.state.seat.filter(elem => elem !== e.target.id)});
         else 
             this.setState({seat: [...this.state.seat, e.target.id]});
-    }
-
-    componentDidUpdate(){
-        this.props.getSeatNum(this.state.seat);
     }
 
     renderSeats(){
