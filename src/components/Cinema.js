@@ -8,8 +8,10 @@ class Cinema extends React.Component{
         super(props)
         this.state = {seat: []};
     }
-
+    
+      
      selectSeat = (e) => {
+        this.setState({seat: [...this.state.seat, e.target.id]});
         if(e.target.className==='seat')
             e.target.textContent='';
         else 
@@ -18,9 +20,11 @@ class Cinema extends React.Component{
         e.target.classList.toggle("selectedSeat");
 
         this.setState({seat: [...this.state.seat, e.target.id]});
-        this.props.getSeatNum(this.state.seat);
     }
 
+    componentDidUpdate(){
+        this.props.getSeatNum(this.state.seat);
+    }
 
     renderSeats(){
         let seats = [];
@@ -59,7 +63,6 @@ class Cinema extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return state;
 }
 
