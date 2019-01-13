@@ -7,6 +7,14 @@ const selectedSeatNumReducer = (seat = null, action) => {
     return seat;
 };
 
+const isRegisterClickedReducer = (click = false, action) => {
+    if(action.type === 'REGISTER_CLICKED'){
+        return action.payload;
+    }
+    return click;
+}
+
 export default combineReducers({
-    seatsSelected: selectedSeatNumReducer
+    seatsSelected: selectedSeatNumReducer,
+    isRegisterClicked: isRegisterClickedReducer
 });

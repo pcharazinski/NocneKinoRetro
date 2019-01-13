@@ -35,9 +35,43 @@
     }
 }
 
-//scrollbar
-/* width */
-@mixin scrollbar{
-    /* width */
+@mixin glow($color){
+    box-shadow:
+        0 0 .5rem #fff,
+        inset 0 0 .5rem #fff,
+        0 0 1rem $color,
+        inset 0 0 1rem $color,
+        0 0 1.5rem $color,
+        inset 0 0 1.5rem $color;
+}
 
+@mixin btn($url){
+    button{
+        width: fit-content;
+        min-height: fit-content;
+        border: none;
+        align-self: center;
+        @include bgBtn($url);
+        &:focus{
+            outline: none;
+        }
+        &:active{
+        transform: scale(0.9);
+        }
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+@mixin bgBtn($url){
+        background-image: url($url);
+        background-size: cover;
+        background-position: center;
+        width: 200px;
+        height: 150px;
+        @include mQ(1024px){
+            width: 300px;
+            height: 225px;
+        }
 }

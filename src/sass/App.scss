@@ -60,6 +60,38 @@
     }
 }
 
+.registerForm{
+    width: 66%;
+    height: 90%;
+    border-right: 3px solid white;
+    form{
+        width: 100%;
+        @include flex-column;
+        align-items: center;
+        label{
+            padding-bottom: 10px;
+        }
+        input[type=text]{
+            width: 50%;
+            height: 30px;
+            margin-bottom: 20px;
+            background-color: rgba(7,8,10,0.98);
+            border: 2px solid #fff0f9;
+            border-radius: 5px;
+            @include glow($purple-glow);
+                &:focus, &:hover{
+                    outline: none;
+                    @include glow($purple-glow-hover)
+                }
+        }
+        @include btn('../img/potwierdz_btn.png');
+    }
+    @include mQ(1024px){
+        border: none;
+        width: 100%;  
+    }
+}
+
 .cinema{
     width: 66%;
     height: 90%;
@@ -133,35 +165,9 @@
             margin: 15px 0;
         }
     }
-    button{
-        width: fit-content;
-        min-height: fit-content;
-        border: none;
-        align-self: center;
-        .rezBtn{
-            background-image: url('../img/rezerwujBtn.png');
-            background-size: cover;
-            background-position: center;
-            width: 200px;
-            height: 150px;
-            @include mQ(1024px){
-                width: 300px;
-                height: 225px;
-            }
-        }
-        &:focus{
-            outline: none;
-        }
-        &:active{
-           transform: scale(0.9);
-        }
-        &:hover{
-            cursor: pointer;
-        }
-       
-    }
+    @include btn('../img/rezerwujBtn.png');
     @include mQ(1024px){
-        width: 96%;
+        width: 100%;
     }
 }
 

@@ -1,17 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { isRegisterClicked } from '../actions';
 
 class Info extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {width: window.innerWidth};
+        this.state = {
+            width: window.innerWidth,
+            isRegisterClicked: false
+        };
         this.updateWidth = this.updateWidth.bind(this)
       }
 
     updateWidth() {
         this.setState({width: window.innerWidth});
-        console.log(this.state.width);
     }
     componentWillMount(){
         this.updateWidth();
@@ -19,8 +22,17 @@ class Info extends React.Component{
     componentDidMount(){
         window.addEventListener("resize", this.updateWidth);
     }
+
+    componentDidUpdate(){
+        this.props.isRegisterClicked(this.state.isRegisterClicked);
+    }
+
     componentWillUnmount() {
         window.removeEventListener("resize", this.updateWidth);
+    }
+
+    handleClick = () => {
+        this.setState({isRegisterClicked: true});
     }
 
     checkIfNull(){
@@ -54,7 +66,7 @@ class Info extends React.Component{
                     <li><h2>Czas:</h2></li>
                     <li><h2>Miejsca: {`${this.checkIfNull()}`}</h2></li>
                 </ul>
-                <button><div className='rezBtn'/></button>
+                <button id='register' onClick={this.handleClick}><div className='rezBtn'/></button>
             </div>
     );
     }
@@ -67,7 +79,7 @@ class Info extends React.Component{
                     <li><h2>Czas:</h2></li>
                     <li><h2>Miejsca: {`${this.checkIfNull()}`}</h2></li>
                 </ul>
-                <button><div className='rezBtn'/></button>
+                <button id='register' onClick={this.handleClick}><div className='rezBtn'/></button>
                 <div className='seatsStatus'>
                     <div className='seatStatus'>
                         <div className = 'seat'/>
@@ -92,7 +104,10 @@ class Info extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-   return {seat: state.seatsSelected};
+   return {
+        seat: state.seatsSelected,
+        clicked: state.isRegisterClicked
+    };
 };
 
-export default connect(mapStateToProps)(Info);
+export default connect(mapStateToProps, {isRegisterClicked})(Info);

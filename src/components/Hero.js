@@ -1,15 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Window from './Window';
 import Cinema from './Cinema';
 import Info from './Info';
+import Form from './Form';
 
 class Hero extends React.Component{
 
+    // constructor(props){
+    //     super(props);
+    // }
+
+    renderRegisterForm(){
+        if(this.props.clicked===true)
+            return <Form/>;
+        else return <Cinema/>
+    }
+
     render(){
+        console.log(this.props);
         return(
             <div className='hero'>
                 <Window>
-                    <Cinema/>
+                    {this.renderRegisterForm()}
                     <Info/>
                 </Window>
             </div>
@@ -17,4 +30,11 @@ class Hero extends React.Component{
     }
 }
 
-export default Hero;
+const mapStateToProps = (state) => {
+
+    return {
+         clicked: state.isRegisterClicked
+     };
+ };
+ 
+ export default connect(mapStateToProps)(Hero);

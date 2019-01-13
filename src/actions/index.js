@@ -4,3 +4,10 @@ export const getSeatNum = (seat) => {
         payload: seat
     };
 };
+
+export const isRegisterClicked = (click) => {
+    return {
+        type: 'REGISTER_CLICKED',
+        payload: click
+    };
+}
