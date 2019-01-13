@@ -1,0 +1,221 @@
+@import 'mixins';
+@import 'variables';
+@import 'elements';
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin:0;
+    color: white;
+    font-family: 'Advent Pro', sans-serif;
+    letter-spacing: 3px;
+}
+
+#root{
+    width: 100%;
+    height: 100%;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+}
+
+.hero{
+    height: 100vh;
+    width: 100%;
+    background-image: url('../img/bg-hero.jpg');
+    background-size: cover;
+    @include flex-center;
+    
+}
+
+.window{
+    position: relative;
+    width: 80%;
+    height: 85%;
+    background-image: linear-gradient(to bottom, rgba(13,15,21,0.9), rgba(7,8,10,0.98));
+    border: 7px solid white;
+    overflow-y: scroll;
+    .X{
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 10px;
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+    }
+    .content{
+        width: 100%;
+        height: 100%;
+        @include flex-column;
+        flex-wrap: wrap;
+        @include mQ(1024px){
+            flex-wrap: nowrap;
+            min-height: 100%;
+            height: auto;
+        }
+    }
+}
+
+.registerForm{
+    width: 66%;
+    height: 90%;
+    border-right: 3px solid white;
+    form{
+        width: 100%;
+        @include flex-column;
+        align-items: center;
+        label{
+            padding-bottom: 10px;
+        }
+        input[type=text]{
+            width: 50%;
+            height: 30px;
+            margin-bottom: 20px;
+            background-color: rgba(7,8,10,0.98);
+            border: 2px solid #fff0f9;
+            border-radius: 5px;
+            @include glow($purple-glow);
+                &:focus, &:hover{
+                    outline: none;
+                    @include glow($purple-glow-hover)
+                }
+        }
+        @include btn('../img/potwierdz_btn.png');
+    }
+    @include mQ(1024px){
+        border: none;
+        width: 100%;  
+    }
+}
+
+.cinema{
+    width: 66%;
+    height: 90%;
+    border-right: 3px solid white;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 2%;
+    .screen{
+        width: 100%;
+        min-height: 50px;
+        max-height: 15%;
+        @include cinema-border;
+        @include flex-center;
+        @include mQ(1024px){
+            margin: 20px 0;
+        }
+    }
+    .seats{
+        width: 96%;
+        height: 75%;
+        display: grid;
+        grid-template-columns: repeat(11, minmax(min-content, 45px));;
+        //column-gap: 5px;
+        row-gap: 10px;
+        justify-content: space-evenly;
+    }
+    @include mQ(1024px){
+        border: none;
+        width: fit-content;  
+    }
+    @include mQ(700px){
+        
+        row-gap: 5px;
+        column-gap: 0;
+    }
+}
+
+.seat{
+    @include seat;
+    &:hover{
+        background-color: rgba(131, 131, 131, 0.1);
+        cursor: pointer;
+    }
+}
+
+.bookedSeat{
+    background-image: url('../img/x.png');
+    background-size: cover;
+    @include seat;
+}
+
+
+.selectedSeat{
+    background-image: url('../img/ok.png');
+    background-size: cover;
+   @include seat;
+}
+
+.info{
+    width: 30%;
+    height: 90%;
+    margin: 0 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    .resInfo{
+        list-style: none;
+        li:nth-child(2){
+            margin: 15px 0;
+        }
+    }
+    @include btn('../img/rezerwujBtn.png');
+    @include mQ(1024px){
+        width: 100%;
+    }
+}
+
+.seatsStatus{
+    min-height: fit-content;
+    @include flex-column;
+    .seatStatus{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 6px;
+        .seat{
+            @include mQ(1024px){
+                width: 30px;
+                height: 30px;
+            }
+        }
+        &:hover{
+            background-color: rgba(131, 131, 131, 0.0);
+            cursor: default;
+        }
+    }
+    h3{
+        padding-left: 15px;
+    }
+    @include mQ(1024px){
+        flex-direction: row;
+        justify-content: flex-start;
+        margin: 10px 0 20px 0;
+    }
+}
+
+    //scrollbar
+    ::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+       
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888; 
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }

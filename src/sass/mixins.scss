@@ -1,0 +1,77 @@
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@mixin cinema-border{
+    border: 3px solid white;
+}
+
+@mixin seat {
+    width: 45px;
+    height: 45px;
+    @include flex-center;
+    @include cinema-border;
+    @include mQ(835px){
+        width: 35px;
+        height: 35px;
+    }
+    @include mQ(700px){
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@mixin mQ($arg){
+    @media only screen and (max-width: $arg) {
+        @content;
+    }
+}
+
+@mixin glow($color){
+    box-shadow:
+        0 0 .5rem #fff,
+        inset 0 0 .5rem #fff,
+        0 0 1rem $color,
+        inset 0 0 1rem $color,
+        0 0 1.5rem $color,
+        inset 0 0 1.5rem $color;
+}
+
+@mixin btn($url){
+    button{
+        width: fit-content;
+        min-height: fit-content;
+        border: none;
+        align-self: center;
+        @include bgBtn($url);
+        &:focus{
+            outline: none;
+        }
+        &:active{
+        transform: scale(0.9);
+        }
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+@mixin bgBtn($url){
+        background-image: url($url);
+        background-size: cover;
+        background-position: center;
+        width: 200px;
+        height: 150px;
+        @include mQ(1024px){
+            width: 300px;
+            height: 225px;
+        }
+}
