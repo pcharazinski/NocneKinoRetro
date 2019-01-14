@@ -6,11 +6,20 @@ class Cinema extends React.Component{
 
     constructor(props){
         super(props)
-        this.state = {seat: []};
+        this.state = {
+                        seat: [],
+                        bookedSeats: ['E2', 'E3', 'D4', 'D5', 'D6', 'B8', 'B9']    
+                        };
+    }
+
+    componentDidMount(){
+        this.checkIfBooked();
     }
 
     componentDidUpdate(){
         this.props.getSeatNum(this.state.seat);
+
+        
     }
 
     checkIfClicked(arr, clickedValue){
@@ -18,28 +27,49 @@ class Cinema extends React.Component{
             return element !== clickedValue;
         })
     }
+
+    checkIfBooked(){
+        const seats = document.querySelectorAll('.seat');
+        for(let i = 0; i<50; i++){
+            for(let j = 0; j<this.state.bookedSeats.length; j++){
+                if(seats[i].id===this.state.bookedSeats[j]){
+                    seats[i].classList.toggle('bookedSeat');
+                    seats[i].textContent = '';
+                }
+            }
+            
+        }
+    }
     
      selectSeat = (e) => {
         const { seat } = this.state;
 
-        if(e.target.className==='seat')
+        if(e.target.className==='seat'){
             e.target.textContent='';
-        else 
-            e.target.textContent = e.target.id.slice(1);
+            e.target.classList.toggle("selectedSeat");
+        }
+        else if(e.target.className==='seat selectedSeat'){
+            e.target.textContent = e.target.id.slice(1)
+            e.target.classList.toggle("selectedSeat");
+        }
+        
 
-        e.target.classList.toggle("selectedSeat");
 
         if(this.checkIfClicked(seat, e.target.id) === false)
             this.setState({seat: seat.filter(elem => elem !== e.target.id)});
-        else 
-            this.setState({seat: [...seat, e.target.id]});
+        else{
+            if(e.target.className !== 'seat bookedSeat')
+                this.setState({seat: [...seat, e.target.id]});
+            else return;
+        } 
+            
     }
 
     renderRow(seats, seatNumber, row, value){
         return (
             seats.push(
                         <div 
-                            id={`${row}${seatNumber-value}`} 
+                            id={`${row}${seatNumber-value}`}
                             key={`${row}${seatNumber-value}`} 
                             className='seat' 
                             onClick={this.selectSeat}

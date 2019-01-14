@@ -1,13 +1,29 @@
+@import 'variables';
+
 @mixin flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+@mixin flex-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 @mixin flex-column{
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+@mixin flex-column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 @mixin cinema-border{
@@ -35,7 +51,7 @@
     }
 }
 
-@mixin glow($color){
+@mixin glowBox($color){
     box-shadow:
         0 0 .5rem #fff,
         inset 0 0 .5rem #fff,
@@ -43,6 +59,13 @@
         inset 0 0 1rem $color,
         0 0 1.5rem $color,
         inset 0 0 1.5rem $color;
+}
+
+@mixin glowText($color){
+    text-shadow:
+        0 0 .5rem $purple-core,
+        0 0 1rem $color,
+        0 0 1.5rem $color,
 }
 
 @mixin btn($url){

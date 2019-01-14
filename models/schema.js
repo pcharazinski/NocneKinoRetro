@@ -4,6 +4,10 @@ const reservationSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
+        surname: {
+            type: String,
+            required: true
+        },
         mail: {
             type: String,
             required: true,
@@ -20,7 +24,7 @@ const reservationSchema = new mongoose.Schema({
             type: Number,
             required: true
         },
-        rows:{
+        seat:{
             type: String,
             required: true,
         },
