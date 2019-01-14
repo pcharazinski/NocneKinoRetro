@@ -16,13 +16,12 @@ const reservationSchema = new mongoose.Schema({
             type: Date,
             required: true
         },
-        row:{
-            type: Number, //row [1, 2, 3, 4, 5]
-            required: true,
-        },
-        seatInRow: {
-            // place: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        duration:{
             type: Number,
+            required: true
+        },
+        rows:{
+            type: String,
             required: true,
         },
         isReserved: {
