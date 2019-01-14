@@ -1,6 +1,6 @@
-class Fetch{
+class Fetch {
 
-    static przeslijDane(reservation){
+    static przeslijDane(reservation) {
         fetch('/reservation', {
             method: 'post',
             headers: {
@@ -19,9 +19,7 @@ class Fetch{
             })
         }).then((resp) => console.log(resp))
     }
-
-
-    static pobierzDane(){
+    static pobierzDane() {
         return new Promise((resolve, reject) => {
             fetch('/').then((resp) => resp.json()).then(data => resolve(data)).catch(err => reject(err));
         })
