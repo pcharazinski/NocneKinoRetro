@@ -10,10 +10,9 @@ class App extends React.Component {
         this.pobierzDane ("a") }
 
             const pobierzDane = (searchTerm) => {
-            // fetch('/test').then((resp) => resp.json()).then(data => console.log(data)).catch(err => console.error(err));
             const urlDB = "https://api.themoviedb.org/3/search/movie?api_key=02b7c790eefcf035ffc889efdfc6cb77&query=" + searchTerm
             $.ajax({
-                url: urlString,
+                url: urlDB,
                 success: (searchResults) => {
                   console.log("Pobrano API")
                   const results = searchResults.results
@@ -38,7 +37,7 @@ class App extends React.Component {
               console.log(event.target.value)
               const boundObject = this
               const searchTerm = event.target.value
-              boundObject.performSearch(searchTerm)
+              boundObject.pobierzDane(searchTerm)
             }
         
     render() {
