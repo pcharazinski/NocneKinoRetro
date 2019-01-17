@@ -75,8 +75,8 @@ class Info extends React.Component{
         return (
             <div className = 'info'>
                 <ul className='resInfo'>
-                    <li><h2>Tytuł:</h2></li>
-                    <li><h2>Czas:</h2></li>
+                    <li><h2>Tytuł: <span>Pulp Fiction</span></h2></li>
+                    <li><h2>Czas: 2h20min</h2></li>
                     <li><h2>Miejsca: {`${this.checkIfNull()}`}</h2></li>
                 </ul>
                 <button id='register' onClick={this.handleClick}><div className='rezBtn'/></button>

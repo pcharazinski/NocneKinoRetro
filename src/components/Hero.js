@@ -1,45 +1,28 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import Window from './Window';
-import Cinema from './Cinema';
-import Info from './Info';
-import Form from './Form';
-
+import $ from 'jquery'
 
 class Hero extends React.Component{
 
-    // constructor(props){
-    //     super(props);
-    // }
-
     componentDidMount(){
-       //console.log(Fetch.zwrocZarezerwowane());
+        this.scrollDown();
     }
 
-    renderRegisterForm(){
-        if(this.props.clicked===true)
-            return <Form/>;
-        else return <Cinema/>
+    scrollDown(){
+        $(".arrow").click(function() {
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $(".movies").offset().top
+            }, 800);
+        });
     }
 
     render(){
-        console.log(this.props);
         return(
             <div className='hero'>
-                <Window>
-                    {this.renderRegisterForm()}
-                    <Info/>
-                </Window>
+                <div className='logo'/>
+                <div className='arrow'/>
             </div>
     );
     }
 }
 
-const mapStateToProps = (state) => {
-
-    return {
-         clicked: state.isRegisterClicked
-     };
- };
- 
- export default connect(mapStateToProps)(Hero);
+ export default Hero;

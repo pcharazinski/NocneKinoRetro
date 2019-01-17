@@ -1,7 +1,8 @@
 import React from 'react';
+import $ from 'jquery';
 import '../sass/App.scss'
 import Hero from './Hero';
-import $ from 'jquery';
+import Movies from './Movies';
 
 class App extends React.Component {
   constructor(props) {
@@ -46,7 +47,13 @@ class App extends React.Component {
 
   render() {
 
-    return <Hero />;
+    return (
+      <div>
+        <Hero/>
+        <Movies/>
+      </div>
+        
+      );
     // {this.state.XXX}
   }
 }

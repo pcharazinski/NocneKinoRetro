@@ -9,7 +9,7 @@ class Window extends React.Component{
     render(){
         return ( 
                 <div className='window scrollbar'>
-                    <div className='X' onClick={this.handleClick}>X</div>
+                    {/* <div className='X' onClick={this.handleClick}>X</div> */}
                     <div className='content'>{this.props.children}</div>
                     
                 </div>
