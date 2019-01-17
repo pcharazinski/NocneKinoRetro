@@ -35,6 +35,7 @@ class Form extends React.Component{
         e.preventDefault();
         
         fetch.przeslijDane(this.state);
+        this.props.renderCinema();
         // this.setState({rerender: false});
         // console.log(this.props);
     }

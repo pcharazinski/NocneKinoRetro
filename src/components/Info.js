@@ -32,7 +32,7 @@ class Info extends React.Component{
     }
 
     handleClick = () => {
-        this.setState({isRegisterClicked: true});
+        //this.setState({isRegisterClicked: true});
     }
 
     checkIfNull(){
@@ -66,7 +66,7 @@ class Info extends React.Component{
                     <li><h2>Czas:</h2></li>
                     <li><h2>Miejsca: {`${this.checkIfNull()}`}</h2></li>
                 </ul>
-                <button id='register' onClick={this.handleClick}><div className='rezBtn'/></button>
+                <button id='register' onClick={this.props.renderForm}><div className='rezBtn'/></button>
             </div>
     );
     }
@@ -79,7 +79,7 @@ class Info extends React.Component{
                     <li><h2>Czas: 2h20min</h2></li>
                     <li><h2>Miejsca: {`${this.checkIfNull()}`}</h2></li>
                 </ul>
-                <button id='register' onClick={this.handleClick}><div className='rezBtn'/></button>
+                <button id='register' onClick={this.props.renderForm}><div className='rezBtn'/></button>
                 <div className='seatsStatus'>
                     <div className='seatStatus'>
                         <div className = 'seat'/>

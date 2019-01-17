@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Window from './Window';
-import Info from './Info';
-import Form from './Form';
-import Cinema from './Cinema';
+import Reservation from './Reservation';
 import SingleMovie from './SingleMovie';
 
 class Movies extends React.Component{
@@ -53,12 +50,6 @@ class Movies extends React.Component{
         return dates;
     }
 
-    renderRegisterForm(){
-        if(this.state.renderForm===true)
-            return <Form/>;
-        else return <Cinema/>
-    }
-
     showReservationWindow(){
         document.querySelector('.showWindow').style.display = 'block';
     }
@@ -78,10 +69,7 @@ class Movies extends React.Component{
                     </div>
                     <div className = 'showWindow' style={{display: 'none'}}>
                         <div className='X' onClick={this.hideReservationWindow}>X</div>
-                        <Window>
-                            {this.renderRegisterForm()}
-                            <Info/>
-                        </Window>
+                        <Reservation/>
                     </div>
                 </div>
         );
