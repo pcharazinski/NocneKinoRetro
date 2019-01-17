@@ -4,7 +4,7 @@ import Window from './Window';
 import Cinema from './Cinema';
 import Info from './Info';
 import Form from './Form';
-import Fetch from '../fetch';
+
 
 class Hero extends React.Component{
 
@@ -13,7 +13,7 @@ class Hero extends React.Component{
     // }
 
     componentDidMount(){
-       console.log(Fetch.zwrocZarezerwowane());
+       //console.log(Fetch.zwrocZarezerwowane());
     }
 
     renderRegisterForm(){

@@ -37,21 +37,22 @@ class Fetch {
     }
 
 
-    static zwrocZarezerwowane(){
-        let miejsca = [];
+    static async zwrocZarezerwowane(){
+        var miejsca = [];
       
-        this.pobierzDane().then(res => {
+        await this.pobierzDane().then(res => {
           res.forEach(rezerwacja => {
             if (rezerwacja.isReserved === true){
-              miejsca.push(rezerwacja.seat);
+              miejsca.push((rezerwacja.seat));
             }
           })
         })
-        console.log(miejsca);
+        // console.log(miejsca);
         return miejsca;
+                    
     }
-
-
+                
+                
 }
 
 export default Fetch;

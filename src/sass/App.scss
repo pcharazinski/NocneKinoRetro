@@ -22,31 +22,148 @@
 }
 
 .hero{
+    padding: 1%;
     height: 100vh;
     width: 100%;
     background-image: url('../img/bg-hero.jpg');
     background-size: cover;
+    @include flex-column;
+    align-items: center;
+    .logo{
+        background-image: url('../img/logo.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 50%;
+        height: 90%;
+    }
+    .arrow{
+        background-image: url('../img/arrow.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 20%;
+        height: 15%;
+        transition: all .3s;
+        &:hover{
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+    }
+}
+
+.movies{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    @include flex-column;
+    align-items: center;
+    background-image: url('../img/bg-hero.jpg');
+    background-size: cover;
+    .dateSlider{
+        width: 100%;
+        height: 55px;
+        background-image: linear-gradient(to bottom, #08080c, #010102);
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .dates{
+        @include flex-center;
+        width: 20%;
+        height: 70%;
+        border-right: 2px solid #fff;
+        text-shadow: none;
+        transition: all .2s;
+        &:hover{
+            @include glowText($purple-glow);
+            cursor: pointer;
+        }
+    }
+    .activeDate{
+        @include glowText($blue-glow);
+    }
+}
+
+.moviesList{
     @include flex-center;
-    
+    align-items: center;
+    min-height: 80%;
+    width: 80%;
+    height: auto;
+}
+
+.movieWrap{
+    @include flex-column-center;
+    padding: 30px 10px;;
+    h3{ padding: 10px; }
+    span{transition: all .3s;}
+    span:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.singleMovieInner{
+    background-image: rgba(131, 131, 131, 0.0);
+    position: absolute;
+    width: 150px;
+    height: 225px;
+    border-radius: 5px;
+    border: 2px solid $purple-core;
+    @include glowBox($purple-glow);
+    z-index: 3;
+    @include flex-center;
+    transition: background-image 5s ease-in-out; 
+    img{
+        position: relative;
+        border-radius: inherit;
+        z-index: -5 !important;
+    }
+    &:hover{
+        background: url('../img/rezerwuj.png');
+        cursor: pointer;
+    }
+}
+
+.singleMovieOuter{
+    width: 170px;
+    height: 245px;
+    border-radius: 5px;
+    border: 2px solid $blue-core;
+    @include glowBox($blue-glow);
+    @include flex-center;
+}
+
+.overlay{
+    position: absolute;
+    opacity: 0;
+    width: 150px;
+    height: 225px;
+    border-radius: 5px;
+    background-color: red;
+    transition: all .3s;
+
+}
+
+.showWindow{
+    position: absolute;
+    z-index: 5;
+    width: 80%;
+    height: 85%;
 }
 
 .window{
-    position: relative;
-    width: 80%;
-    height: 85%;
+    // display: none;
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
     background-image: linear-gradient(to bottom, rgba(13,15,21,0.9), rgba(7,8,10,0.98));
     border: 7px solid white;
     overflow-y: scroll;
-    .X{
-        position: absolute;
-        right: 0;
-        top: 0;
-        padding: 10px;
-        &:hover{
-            cursor: pointer;
-            transform: scale(1.1);
-        }
-    }
     .content{
         width: 100%;
         height: 100%;
@@ -57,6 +174,18 @@
             min-height: 100%;
             height: auto;
         }
+    }
+}
+
+.X{
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    padding: 10px 20px;
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.1);
     }
 }
 
@@ -71,17 +200,18 @@
         label{
             padding-bottom: 10px;
         }
-        input[type=text]{
+        input[type=text], input[type=email]{
             width: 50%;
             height: 30px;
+            padding: 5px;
             margin-bottom: 20px;
             background-color: rgba(7,8,10,0.98);
             border: 2px solid #fff0f9;
             border-radius: 5px;
-            @include glow($purple-glow);
+            @include glowBox($purple-glow);
                 &:focus, &:hover{
                     outline: none;
-                    @include glow($purple-glow-hover)
+                    @include glowBox($purple-glow-hover)
                 }
         }
         @include btn('../img/potwierdz_btn.png');
