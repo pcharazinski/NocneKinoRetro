@@ -1,6 +1,7 @@
 class Fetch {
 
     static przeslijDane(reservation) {
+        return new Promise((resolve, reject) => {
         fetch('/addreservation', {
             method: 'post',
             headers: {
@@ -9,18 +10,20 @@ class Fetch {
             },
             body: JSON.stringify({
                 "name": `${reservation.name}`,
+                "surname": `${reservation.surname}`,
                 "mail": `${reservation.mail}`,
                 "title": `${reservation.title}`,
                 "date": `${reservation.date}`,
                 "duration": `${reservation.duration}`,
-                "rows": `${reservation.rows}`,
+                "seat": `${reservation.seat}`,
                 "isReserved": `${reservation.isReserved}`
             })
-        }).then((resp) => console.log(resp))
-    }
+        }).then((resp) => resolve(resp))
+    })
+}
 
 
-    async pobierzDane() {
+    static async pobierzDane() {
         try {
           const rezerwacje = await fetch('/getreservation')
           const rezerwacjeJson = await rezerwacje.json()
@@ -35,7 +38,7 @@ class Fetch {
     static zwrocZarezerwowane(){
         let miejsca = [];
       
-        pobierzDane().then(res => {
+        this.pobierzDane().then(res => {
           res.forEach(rezerwacja => {
             if (rezerwacja.isReserved){
               miejsca.push(rezerwacja.rows);

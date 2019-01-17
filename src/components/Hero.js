@@ -4,12 +4,17 @@ import Window from './Window';
 import Cinema from './Cinema';
 import Info from './Info';
 import Form from './Form';
+import Fetch from '../fetch';
 
 class Hero extends React.Component{
 
     // constructor(props){
     //     super(props);
     // }
+
+    componentDidMount(){
+       // console.log(Fetch.zwrocZarezerwowane());
+    }
 
     renderRegisterForm(){
         if(this.props.clicked===true)

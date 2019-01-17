@@ -13,11 +13,12 @@ const getReservation = (req, res) => {
 const postReservation=(req, res)=>{
     const newReservation = new Schema ({
             name: req.body.name,
+            surname: req.body.surname,
             mail: req.body.mail,
             title: req.body.title,
             date: req.body.date,
-            row: req.body.row,
-            seatInRow: req.body.seatInRow,
+            duration: req.body.duration,
+            seat: req.body.seat,
             isReserved: req.body.isReserved
             }
     )
