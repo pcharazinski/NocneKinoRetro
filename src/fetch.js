@@ -25,8 +25,10 @@ class Fetch {
 
     static async pobierzDane() {
         try {
-          const rezerwacje = await fetch('/getreservation')
-          const rezerwacjeJson = await rezerwacje.json()
+          const rezerwacje = await fetch('/getreservation');
+        //   console.log(rezerwacje);
+          const rezerwacjeJson = await rezerwacje.json();
+        //   console.log(rezerwacjeJson);
           return rezerwacjeJson;
 
         } catch (err) {
@@ -40,12 +42,12 @@ class Fetch {
       
         this.pobierzDane().then(res => {
           res.forEach(rezerwacja => {
-            if (rezerwacja.isReserved){
-              miejsca.push(rezerwacja.rows);
+            if (rezerwacja.isReserved === true){
+              miejsca.push(rezerwacja.seat);
             }
           })
         })
-
+        console.log(miejsca);
         return miejsca;
     }
 

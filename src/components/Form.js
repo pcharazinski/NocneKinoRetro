@@ -20,7 +20,7 @@ class Form extends React.Component{
                 duration: '2h20min',
                 date: `${(this.date.getDate())}.${(this.date.getMonth())+1}.${this.date.getFullYear()}`,
                 seat: '',
-                isReserved: false,
+                isReserved: true,
         }
     }
     

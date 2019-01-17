@@ -13,7 +13,7 @@ class Hero extends React.Component{
     // }
 
     componentDidMount(){
-       // console.log(Fetch.zwrocZarezerwowane());
+       console.log(Fetch.zwrocZarezerwowane());
     }
 
     renderRegisterForm(){
