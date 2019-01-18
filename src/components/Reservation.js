@@ -38,7 +38,7 @@ class Reservation extends React.Component{
                     {/* <div className='X' onClick={this.handleClick}>X</div> */}
                     <div className='content'>
                         {this.renderRegisterForm()}
-                        <Info renderForm = {this.renderForm}/>
+                        <Info renderForm = {this.renderForm} movieId = {this.state.movieId}/>
                     </div>
                     
                     

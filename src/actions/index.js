@@ -11,3 +11,10 @@ export const isRegisterClicked = (click) => {
         payload: click
     };
 }
+
+export const getMoviesArr = (moviesArr) => {
+    return {
+        type: 'MOVIES_ARR',
+        payload: moviesArr
+    }
+}

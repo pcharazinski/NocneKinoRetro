@@ -5,8 +5,6 @@ import $ from 'jquery'
 class Hero extends React.Component{
 
     async componentDidMount(){
-        const movie = await Api.getMovie(238); 
-        console.log(movie);
         this.scrollDown();
     }
 

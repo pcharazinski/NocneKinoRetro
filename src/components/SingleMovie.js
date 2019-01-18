@@ -1,6 +1,5 @@
 import React from 'react';
 import Api from '../api';
-import pulpfiction from '../img/pulpfiction.jpg';
 
 class SingleMovie extends React.Component{
 

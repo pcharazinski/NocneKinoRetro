@@ -23,8 +23,6 @@ class Cinema extends React.Component{
     }
 
     componentDidUpdate(){
-       // this.checkIfBooked();
-        console.log(this.state);
         this.props.getSeatNum(this.state.seat);
         
     }
