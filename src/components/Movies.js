@@ -5,8 +5,8 @@ import SingleMovie from './SingleMovie';
 
 class Movies extends React.Component{
 
-    constructor(props){
-        super(props);
+    constructor(props, context){
+        super(props, context);
 
         this.state = {
             dateActive: 'd0',
@@ -50,12 +50,14 @@ class Movies extends React.Component{
         return dates;
     }
 
-    showReservationWindow(){
-        document.querySelector('.showWindow').style.display = 'block';
-    }
+    // showReservationWindow(){
+    //     document.querySelector('.showWindow').style.display = 'block';
+    // }
 
-    hideReservationWindow(){
+    hideReservationWindow=()=>{
         document.querySelector('.showWindow').style.display = 'none';
+        //this.refs.child.renderCinema();
+
     }
 
     render(){
@@ -65,11 +67,11 @@ class Movies extends React.Component{
                         {this.renderDates()}
                     </div>
                     <div className='moviesList'>
-                        <div onClick={this.showReservationWindow}><SingleMovie title='pulpfiction'/></div>
+                        <SingleMovie movieId = {680}/>
                     </div>
                     <div className = 'showWindow' style={{display: 'none'}}>
                         <div className='X' onClick={this.hideReservationWindow}>X</div>
-                        <Reservation/>
+                        <Reservation ref = "child"/>
                     </div>
                 </div>
         );

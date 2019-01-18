@@ -75,7 +75,7 @@ class Info extends React.Component{
         return (
             <div className = 'info'>
                 <ul className='resInfo'>
-                    <li><h2>Tytuł: <span>Pulp Fiction</span></h2></li>
+                    <li><h2>Tytuł: Pulp Fiction</h2></li>
                     <li><h2>Czas: 2h20min</h2></li>
                     <li><h2>Miejsca: {`${this.checkIfNull()}`}</h2></li>
                 </ul>

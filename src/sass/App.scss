@@ -109,8 +109,8 @@
 .singleMovieInner{
     background-image: rgba(131, 131, 131, 0.0);
     position: absolute;
-    width: 150px;
-    height: 225px;
+    width: 164px;
+    height: 246px;
     border-radius: 5px;
     border: 2px solid $purple-core;
     @include glowBox($purple-glow);
@@ -129,8 +129,8 @@
 }
 
 .singleMovieOuter{
-    width: 170px;
-    height: 245px;
+    width: 184px;
+    height: 265px;
     border-radius: 5px;
     border: 2px solid $blue-core;
     @include glowBox($blue-glow);
@@ -294,9 +294,9 @@
         li:nth-child(2){
             margin: 15px 0;
         }
-        // span{
-        //     @include glowText($purple-glow);
-        // }
+        span{
+            @include glowText($purple-glow);
+        }
     }
     @include btn('../img/rezerwujBtn.png');
     @include mQ(1024px){
