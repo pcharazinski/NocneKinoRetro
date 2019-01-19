@@ -17,7 +17,7 @@
     "redux": "^4.0.1"
   },
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "react-scripts start",
     "front": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
