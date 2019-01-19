@@ -110,6 +110,14 @@
     }
 }
 
+.movieTitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 120px;
+}
+
 .singleMovieInner{
     background-image: rgba(131, 131, 131, 0.0);
     position: absolute;

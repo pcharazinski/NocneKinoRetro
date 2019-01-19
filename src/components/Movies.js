@@ -87,8 +87,6 @@ class Movies extends React.Component{
 
     render(){
         let dateActive = this.state.dateActive;
-        console.log(dateActive);
-        console.log(this.props.movies);
         return (
                 <div className='movies'>
                     <div className='dateSlider'>

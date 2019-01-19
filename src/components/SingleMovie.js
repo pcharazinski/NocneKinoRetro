@@ -7,7 +7,6 @@ class SingleMovie extends React.Component{
         super(props);
 
         this.posterUrlBase = 'http://image.tmdb.org/t/p/w154/';
-        // this.movieId = this.props.movieId;
         this.state = {
             movieId: this.props.movieId,
             movieTitle: this.props.movieTitle,
@@ -16,12 +15,11 @@ class SingleMovie extends React.Component{
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
-        // this.setState({
-        //     movieId: movieId,
-        //     movieTitle: movieTitle,
-        //     moviePoster: moviePoster
-        // })
+        this.setState({
+            movieId: nextProps.movieId,
+            movieTitle: nextProps.movieTitle,
+            moviePoster: nextProps.moviePoster
+        })
 
       }
 
@@ -41,8 +39,10 @@ class SingleMovie extends React.Component{
                     <div className='singleMovieInner'/>
                     <img src={`http://image.tmdb.org/t/p/w154/${this.state.moviePoster}`} alt={this.props.title} width={154} />
                 </div>
-                <h3>{this.state.movieTitle}</h3>
-                <span onClick={this.showMovieInfo}>więcej</span>
+                <div className='movieTitle'>
+                    <h3>{this.state.movieTitle}</h3>
+                    <span onClick={this.showMovieInfo}>więcej</span>
+                </div>
             </div>
         );
     }
