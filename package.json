@@ -1,4 +1,4 @@
-{
+  {
   "name": "nocnekinoretro",
   "version": "0.1.0",
   "private": true,
@@ -18,7 +18,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "front": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -27,7 +27,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "http://localhost:3001",
   "browserslist": [
     ">0.2%",
     "not dead",

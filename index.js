@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const route = require('./routes/router')
 
-// app.use(express.static('public'));
+app.use(express.static('build'));
 app.use('/', route);
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Misiaczku, slucham Cie na porcie ${port}`));
