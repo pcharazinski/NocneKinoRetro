@@ -18,7 +18,6 @@ class Cinema extends React.Component{
     async componentDidMount(){
         const response = await Fetch.zwrocZarezerwowane();
         this.setState({bookedSeats: response});
-        console.log(this.state);
         this.checkIfBooked();
     }
 

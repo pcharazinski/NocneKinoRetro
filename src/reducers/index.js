@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { getMoviesArr } from '../actions';
 
 const selectedSeatNumReducer = (seat = null, action) => {
     if(action.type === 'SEAT_SELECTED'){
@@ -22,8 +21,15 @@ const getMoviesArrReducer = (moviesArr = null, action) => {
     return moviesArr;
 }
 
+const fetchMoviesReducer = (state = null, action) => {
+    if(action.type === 'FETCH_MOVIES'){
+        return action.payload;   
+}
+    return state;
+}
 export default combineReducers({
     seatsSelected: selectedSeatNumReducer,
     isRegisterClicked: isRegisterClickedReducer,
-    getMoviesArr: getMoviesArrReducer
+    getMoviesArr: getMoviesArrReducer,
+    movies: fetchMoviesReducer
 });

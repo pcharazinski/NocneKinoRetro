@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../sass/App.scss'
-import { getMoviesArr } from '../actions';
+import { fetchMovies} from '../actions';
 import Hero from './Hero';
 import Movies from './Movies';
 import Api from '../api';
@@ -9,21 +9,11 @@ import Api from '../api';
 class App extends React.Component {
 
   componentDidMount(){
-    this.getMovies();
-  }
-
-  async getMovies(){
-    const movieArr = [];
-    const today = new Date().getDate();
-    for(let i= 0; i<8; i++){
-      let movie =  await Api.getMovie(today+i);
-      movieArr.push(movie);
-    }
-    this.props.getMoviesArr(movieArr);
+    this.props.fetchMovies();
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props.movies);
     return (
       <div>
         <Hero/>
@@ -35,8 +25,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
-  return state;
+  return {movies: state.movies};
 }
 
-export default connect(mapStateToProps, {getMoviesArr})(App);
+export default connect(mapStateToProps, {fetchMovies})(App);

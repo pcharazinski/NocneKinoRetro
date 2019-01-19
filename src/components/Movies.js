@@ -10,14 +10,17 @@ class Movies extends React.Component{
 
         this.state = {
             dateActive: 'd0',
-            renderForm: this.props.clicked
+            renderForm: this.props.clicked,
+            moviesArr: []
         };
         
         this.date = new Date();
     }
 
-    componentDidMount(){
+    async componentDidMount(){
+        const arr = await this.props.moviesArr
         document.getElementById(this.state.dateActive).classList.toggle('activeDate');
+        this.setState({moviesArr: arr});
     }
 
     componentWillUpdate(){
@@ -50,24 +53,24 @@ class Movies extends React.Component{
         return dates;
     }
 
-    // showReservationWindow(){
-    //     document.querySelector('.showWindow').style.display = 'block';
-    // }
 
     hideReservationWindow=()=>{
         document.querySelector('.showWindow').style.display = 'none';
-        //this.refs.child.renderCinema();
 
     }
 
     render(){
+        //console.log(this.state.moviesArr);
         return (
                 <div className='movies'>
                     <div className='dateSlider'>
                         {this.renderDates()}
                     </div>
                     <div className='moviesList'>
-                        <SingleMovie movieId = {680}/>
+                        <SingleMovie movieId = {this.props.moviesArr[0].id}/>
+                        <SingleMovie movieId = {this.props.moviesArr[1].id}/>
+                        <SingleMovie movieId = {this.props.moviesArr[2].id}/>
+                        <SingleMovie movieId = {this.props.moviesArr[3].id}/>
                     </div>
                     <div className = 'showWindow' style={{display: 'none'}}>
                         <div className='X' onClick={this.hideReservationWindow}>X</div>
@@ -81,7 +84,8 @@ class Movies extends React.Component{
 const mapStateToProps = (state) => {
 
     return {
-         clicked: state.isRegisterClicked
+         clicked: state.isRegisterClicked,
+         movies: state.movies
      };
  };
  

@@ -21,7 +21,6 @@ class SingleMovie extends React.Component{
             movieTitle: movie.title,
             moviePoster: movie.poster_path
         });
-        console.log(`http://image.tmdb.org/t/p/w154/${movie.poster_path}`);
     }
 
     showInfo = () => {
@@ -33,7 +32,6 @@ class SingleMovie extends React.Component{
     }
 
     render(){
-        console.log(this.state);
         return (
             <div className = 'movieWrap'>
                 <div className='singleMovieOuter' onClick={this.showReservationWindow}>
