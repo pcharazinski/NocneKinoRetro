@@ -14,13 +14,6 @@ export const isRegisterClicked = (click) => {
     };
 }
 
-export const getMoviesArr = (moviesArr) => {
-    return {
-        type: 'MOVIES_ARR',
-        payload: moviesArr
-    }
-}
-
 export const fetchMovies = () => async dispatch => {
         let arr = [];
         const movies = [238, 278, 680, 550, 769, 424, 497, 201]
@@ -31,4 +24,11 @@ export const fetchMovies = () => async dispatch => {
         
 
         dispatch({type: 'FETCH_MOVIES', payload: arr});
+}
+
+export const getIdOfMovie = (id) => {
+    return {
+        type: 'MOVIE_ID',
+        payload: id
+    }
 }

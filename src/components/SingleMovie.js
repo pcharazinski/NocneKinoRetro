@@ -1,5 +1,5 @@
 import React from 'react';
-import Api from '../api';
+import { connect } from 'react-redux';
 
 class SingleMovie extends React.Component{
 
@@ -7,28 +7,31 @@ class SingleMovie extends React.Component{
         super(props);
 
         this.posterUrlBase = 'http://image.tmdb.org/t/p/w154/';
-        this.movieId = this.props.movieId;
+        // this.movieId = this.props.movieId;
         this.state = {
-            movieTitle: '',
-            moviePoster: ''
+            movieId: this.props.movieId,
+            movieTitle: this.props.movieTitle,
+            moviePoster: this.props.moviePoster
         };
     }
 
-    async componentDidMount(){
-        const movie = await Api.getMovie(this.movieId);
-        
-        this.setState({
-            movieTitle: movie.title,
-            moviePoster: movie.poster_path
-        });
-    }
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+        // this.setState({
+        //     movieId: movieId,
+        //     movieTitle: movieTitle,
+        //     moviePoster: moviePoster
+        // })
 
-    showInfo = () => {
-        console.log('info');
-    }
+      }
 
     showReservationWindow(){
         document.querySelector('.showWindow').style.display = 'block';
+    }
+
+    showMovieInfo = () => {
+        document.querySelector('.showMovieInfo').style.display = 'block';
+        this.props.getIdOfMovie(this.props.movieId);
     }
 
     render(){
@@ -39,10 +42,17 @@ class SingleMovie extends React.Component{
                     <img src={`http://image.tmdb.org/t/p/w154/${this.state.moviePoster}`} alt={this.props.title} width={154} />
                 </div>
                 <h3>{this.state.movieTitle}</h3>
-                <span onClick={this.showInfo}>więcej</span>
+                <span onClick={this.showMovieInfo}>więcej</span>
             </div>
         );
     }
 }
 
-export default SingleMovie;
+const mapStateToProps = (state) => {
+
+    return {
+         movies: state.movies,
+     };
+ };
+ 
+ export default connect(mapStateToProps)(SingleMovie);

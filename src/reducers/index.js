@@ -14,22 +14,23 @@ const isRegisterClickedReducer = (click = false, action) => {
     return click;
 }
 
-const getMoviesArrReducer = (moviesArr = null, action) => {
-    if(action.type === 'MOVIES_ARR'){
-        return action.payload;
-    }
-    return moviesArr;
-}
-
 const fetchMoviesReducer = (state = null, action) => {
     if(action.type === 'FETCH_MOVIES'){
         return action.payload;   
 }
     return state;
 }
+
+const getIdOfMovieReducer = (state = null, action) => {
+    if(action.type === 'MOVIE_ID'){
+        return action.payload;   
+}
+    return state;
+}
+
 export default combineReducers({
     seatsSelected: selectedSeatNumReducer,
     isRegisterClicked: isRegisterClickedReducer,
-    getMoviesArr: getMoviesArrReducer,
-    movies: fetchMoviesReducer
+    movies: fetchMoviesReducer,
+    idOfMovie: getIdOfMovieReducer
 });

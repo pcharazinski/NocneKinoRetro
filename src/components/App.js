@@ -4,7 +4,6 @@ import '../sass/App.scss'
 import { fetchMovies} from '../actions';
 import Hero from './Hero';
 import Movies from './Movies';
-import Api from '../api';
 
 class App extends React.Component {
 
@@ -13,7 +12,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.props.movies);
+    
     return (
       <div>
         <Hero/>

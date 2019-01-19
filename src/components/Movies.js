@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Reservation from './Reservation';
 import SingleMovie from './SingleMovie';
+import MovieInfo from './MovieInfo';
 
 class Movies extends React.Component{
 
@@ -9,22 +10,15 @@ class Movies extends React.Component{
         super(props, context);
 
         this.state = {
-            dateActive: 'd0',
+            dateActive: 0,
             renderForm: this.props.clicked,
-            moviesArr: []
         };
         
         this.date = new Date();
     }
 
-    async componentDidMount(){
-        const arr = await this.props.moviesArr
+        componentDidMount(){
         document.getElementById(this.state.dateActive).classList.toggle('activeDate');
-        this.setState({moviesArr: arr});
-    }
-
-    componentWillUpdate(){
-        document.getElementById(this.state.dateActive).classList.remove('activeDate');
     }
 
     getDate(days){
@@ -41,40 +35,72 @@ class Movies extends React.Component{
     }
 
     handleClick = (e) =>{
-        this.setState({dateActive: e.currentTarget.id});
+        document.getElementById(this.state.dateActive).classList.remove('activeDate');
         e.currentTarget.classList.toggle('activeDate');
+        // console.log(e.currentTarget.id);
+        // this.props.fetchMovies(e.currentTarget.id)
+        this.setState({dateActive: Number(e.currentTarget.id)});
+       
     }
 
     renderDates(){
-        let dates = [<div id={`d${0}`} className='dates' onClick={this.handleClick}><h3>Dzisiaj</h3></div>];
+        let dates = [<div id={0} key={`d${0}`} className='dates' onClick={this.handleClick}><h3>Dzisiaj</h3></div>];
         for(let i =1; i<5; i++){
-            dates.push(<div id={`d${i}`} className='dates' onClick={this.handleClick}><h3>{this.getDate(i)}</h3></div>);
+            dates.push(<div id={i} key={`d${i}`} className='dates' onClick={this.handleClick}><h3>{this.getDate(i)}</h3></div>);
         }
         return dates;
     }
 
+    renderMovies(id){
+        if(this.props.movies !== null){
+            return (
+                <div className='moviesList'>
+                    <SingleMovie 
+                        movieId = {this.props.movies[id].id} 
+                        movieTitle = {this.props.movies[id].title}
+                        moviePoster = {this.props.movies[id].poster_path}
+                    />
+                    <SingleMovie 
+                        movieId = {this.props.movies[id+1].id} 
+                        movieTitle = {this.props.movies[id+1].title}
+                        moviePoster = {this.props.movies[id+1].poster_path}
+                    />
+                    <SingleMovie 
+                        movieId = {this.props.movies[id+2].id} 
+                        movieTitle = {this.props.movies[id+2].title}
+                        moviePoster = {this.props.movies[id+2].poster_path}
+                    />
+                    <SingleMovie 
+                        movieId = {this.props.movies[id+3].id} 
+                        movieTitle = {this.props.movies[id+3].title}
+                        moviePoster = {this.props.movies[id+3].poster_path}
+                    />
+                </div>
+            );
+        }
+        else return;
+    }
 
     hideReservationWindow=()=>{
         document.querySelector('.showWindow').style.display = 'none';
-
     }
 
     render(){
-        //console.log(this.state.moviesArr);
+        let dateActive = this.state.dateActive;
+        console.log(dateActive);
+        console.log(this.props.movies);
         return (
                 <div className='movies'>
                     <div className='dateSlider'>
                         {this.renderDates()}
                     </div>
-                    <div className='moviesList'>
-                        <SingleMovie movieId = {this.props.moviesArr[0].id}/>
-                        <SingleMovie movieId = {this.props.moviesArr[1].id}/>
-                        <SingleMovie movieId = {this.props.moviesArr[2].id}/>
-                        <SingleMovie movieId = {this.props.moviesArr[3].id}/>
-                    </div>
+                        {this.renderMovies(dateActive)}
                     <div className = 'showWindow' style={{display: 'none'}}>
                         <div className='X' onClick={this.hideReservationWindow}>X</div>
                         <Reservation ref = "child"/>
+                    </div>
+                    <div className='showMovieInfo' style={{display: 'none'}}>
+                        <MovieInfo/>
                     </div>
                 </div>
         );
@@ -84,7 +110,6 @@ class Movies extends React.Component{
 const mapStateToProps = (state) => {
 
     return {
-         clicked: state.isRegisterClicked,
          movies: state.movies
      };
  };
