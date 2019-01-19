@@ -16,9 +16,9 @@ class Form extends React.Component{
                 name: '',
                 surname: '',
                 mail: '',
-                title: 'Pulp Fiction',
-                duration: '2h20min',
-                date: `${(this.date.getDate())}.${(this.date.getMonth())+1}.${this.date.getFullYear()}`,
+                title: this.props.idOfMovie.title,
+                duration: this.props.idOfMovie.runtime,
+                date: this.props.date,
                 seat: '',
                 isReserved: true,
         }
@@ -33,7 +33,7 @@ class Form extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        
+        console.log(this.state);
         fetch.przeslijDane(this.state);
         this.props.renderCinema();
         // this.setState({rerender: false});
@@ -60,7 +60,9 @@ class Form extends React.Component{
 const mapStateToProps = (state) => {
     return {
          seat: state.seatsSelected,
-         clicked: state.isRegisterClicked
+         clicked: state.isRegisterClicked,
+         idOfMovie: state.idOfMovie,
+         date: state.date
      };
  };
  

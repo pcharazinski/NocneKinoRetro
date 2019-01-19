@@ -85,6 +85,10 @@
     .activeDate{
         @include glowText($blue-glow);
     }
+
+    .dates-last{
+        border-right: none;
+    }
 }
 
 .moviesList{
@@ -356,15 +360,16 @@
       
       /* Track */
       ::-webkit-scrollbar-track {
-        background: #f1f1f1; 
+        background: #07070e; 
       }
        
       /* Handle */
       ::-webkit-scrollbar-thumb {
-        background: #888; 
+        background: $purple-core; 
+        @include glowBox($purple-glow);
       }
       
       /* Handle on hover */
       ::-webkit-scrollbar-thumb:hover {
-        background: #555; 
+        background: $purple-glow-hover; 
       }

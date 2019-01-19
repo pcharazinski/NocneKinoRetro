@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getIdOfMovie } from '../actions';
 
 class SingleMovie extends React.Component{
 
@@ -8,6 +9,7 @@ class SingleMovie extends React.Component{
 
         this.posterUrlBase = 'http://image.tmdb.org/t/p/w154/';
         this.state = {
+            movieObj: this.props.movieObj,
             movieId: this.props.movieId,
             movieTitle: this.props.movieTitle,
             moviePoster: this.props.moviePoster
@@ -15,16 +17,24 @@ class SingleMovie extends React.Component{
     }
 
     componentWillReceiveProps(nextProps) {
+        // console.log(nextProps);
         this.setState({
+            movieObj: nextProps.movieObj,
             movieId: nextProps.movieId,
             movieTitle: nextProps.movieTitle,
             moviePoster: nextProps.moviePoster
         })
-
       }
 
-    showReservationWindow(){
+      componentDidUpdate(){
+          //console.log(this.props.idOfMovie);
+      }
+
+    showReservationWindow = () => {
         document.querySelector('.showWindow').style.display = 'block';
+        // console.log(this.state.movieObj);
+        this.props.getIdOfMovie(this.state.movieObj);
+
     }
 
     showMovieInfo = () => {
@@ -33,6 +43,7 @@ class SingleMovie extends React.Component{
     }
 
     render(){
+        // console.log(this.state);
         return (
             <div className = 'movieWrap'>
                 <div className='singleMovieOuter' onClick={this.showReservationWindow}>
@@ -51,8 +62,8 @@ class SingleMovie extends React.Component{
 const mapStateToProps = (state) => {
 
     return {
-         movies: state.movies,
+         idOfMovie: state.idOfMovie
      };
  };
  
- export default connect(mapStateToProps)(SingleMovie);
+ export default connect(mapStateToProps, {getIdOfMovie})(SingleMovie);

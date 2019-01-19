@@ -44,6 +44,18 @@ class Info extends React.Component{
             return seat;
     }
 
+    getTitle = () => {
+        if(this.props.idOfMovie !== null)
+            return this.props.idOfMovie.title;
+        else return;
+    }
+
+    getDuration = () => {
+        if(this.props.idOfMovie !== null)
+            return this.props.idOfMovie.runtime
+        else return;
+    }
+
     renderMobile(){
         return (
             <div className = 'info'>
@@ -62,8 +74,8 @@ class Info extends React.Component{
                     </div>
                 </div>
                 <ul className='resInfo'>
-                    <li><h2>Tytuł:</h2></li>
-                    <li><h2>Czas:</h2></li>
+                    <li><h2>Tytuł: {this.getTitle()}</h2></li>
+                    <li><h2>Czas: {this.getDuration()}min</h2></li>
                     <li><h2>Miejsca: {`${this.checkIfNull()}`}</h2></li>
                 </ul>
                 <button id='register' onClick={this.props.renderForm}><div className='rezBtn'/></button>
@@ -75,8 +87,8 @@ class Info extends React.Component{
         return (
             <div className = 'info'>
                 <ul className='resInfo'>
-                    <li><h2>Tytuł: Pulp Fiction</h2></li>
-                    <li><h2>Czas: 2h20min</h2></li>
+                    <li><h2>Tytuł: {this.getTitle()}</h2></li>
+                    <li><h2>Czas: {this.getDuration()}min</h2></li>
                     <li><h2>Miejsca: {`${this.checkIfNull()}`}</h2></li>
                 </ul>
                 <button id='register' onClick={this.props.renderForm}><div className='rezBtn'/></button>
@@ -99,6 +111,7 @@ class Info extends React.Component{
     }
 
     render(){
+        // console.log(this.props)
         return this.state.width > 1024 ? this.renderDesktop() : this.renderMobile();
     }
 }
@@ -106,7 +119,9 @@ class Info extends React.Component{
 const mapStateToProps = (state) => {
    return {
         seat: state.seatsSelected,
-        clicked: state.isRegisterClicked
+        clicked: state.isRegisterClicked,
+        movies: state.movies,
+        idOfMovie: state.idOfMovie
     };
 };
 

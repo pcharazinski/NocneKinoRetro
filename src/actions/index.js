@@ -32,3 +32,10 @@ export const getIdOfMovie = (id) => {
         payload: id
     }
 }
+
+export const getDate = (date) => {
+    return{
+        type: 'GET_DATE',
+        payload: date
+    }
+}
