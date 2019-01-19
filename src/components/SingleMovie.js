@@ -17,7 +17,6 @@ class SingleMovie extends React.Component{
     }
 
     componentWillReceiveProps(nextProps) {
-        // console.log(nextProps);
         this.setState({
             movieObj: nextProps.movieObj,
             movieId: nextProps.movieId,
@@ -26,24 +25,19 @@ class SingleMovie extends React.Component{
         })
       }
 
-      componentDidUpdate(){
-          //console.log(this.props.idOfMovie);
-      }
 
     showReservationWindow = () => {
         document.querySelector('.showWindow').style.display = 'block';
-        // console.log(this.state.movieObj);
         this.props.getIdOfMovie(this.state.movieObj);
 
     }
 
     showMovieInfo = () => {
         document.querySelector('.showMovieInfo').style.display = 'block';
-        this.props.getIdOfMovie(this.props.movieId);
+        this.props.getIdOfMovie(this.props.movieObj);
     }
 
     render(){
-        // console.log(this.state);
         return (
             <div className = 'movieWrap'>
                 <div className='singleMovieOuter' onClick={this.showReservationWindow}>

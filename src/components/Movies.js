@@ -100,6 +100,7 @@ class Movies extends React.Component{
 
     hideReservationWindow=()=>{
         document.querySelector('.showWindow').style.display = 'none';
+        document.querySelector('.showMovieInfo').style.display = 'none';
     }
 
     render(){
@@ -115,7 +116,8 @@ class Movies extends React.Component{
                         <Reservation ref = "child"/>
                     </div>
                     <div className='showMovieInfo' style={{display: 'none'}}>
-                        <MovieInfo/>
+                        <div className='X' onClick={this.hideReservationWindow}>X</div>
+                            <MovieInfo/>
                     </div>
                 </div>
         );

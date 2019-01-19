@@ -7,7 +7,7 @@ const getReservation = (req, res) => {
         if (err) console.log(err);
         res.send(schemas)
     })
-    .and([{title: req.body.title, date: req.body.date}])
+    
     //Jasiek, metoda and moze byc w tym przypadku niezbyt dobrym rozwiązaniem, na razie to zostawiam KJ
     
 };

@@ -97,6 +97,9 @@
     min-height: 80%;
     width: 80%;
     height: auto;
+    @include mQ(1030px){
+        padding-top: 50px;
+    }
 }
 
 .movieWrap{
@@ -171,7 +174,30 @@
 }
 
 .movieInfo{
+    overflow-y: scroll;
     @include window;
+    @include flex-column;
+    p{
+        padding: 25px;
+    }
+}
+
+.moviePoster{
+    padding: 25px;
+}
+
+.movieInfoContainer{
+    min-height: 50%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.movieDetails{
+    line-height: 40px;
+    padding-top: 25px;
+    height: inherit;
+    @include flex-column;
+    justify-content: flex-start;
 }
 
 .showWindow{
