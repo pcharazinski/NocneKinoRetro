@@ -2,11 +2,14 @@ const Schema=require("../models/schema");
 
 //sprawdzenie czy to miejsce jest zajete czy nie na podstawie daty i tytułu filmu
 const getReservation = (req, res) => {
-    Schema.find({}, (err, schemas) => {
+    Schema
+    .find({}, (err, schemas) => {
         if (err) console.log(err);
-        console.log('schemas');
         res.send(schemas)
     })
+    .and([{title: req.body.title, date: req.body.date}])
+    //Jasiek, metoda and moze byc w tym przypadku niezbyt dobrym rozwiązaniem, na razie to zostawiam KJ
+    
 };
 
 //zarezerwowanie miejsca
