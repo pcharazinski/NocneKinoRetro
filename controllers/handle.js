@@ -2,9 +2,11 @@ const Schema=require("../models/schema");
 
 //sprawdzenie czy to miejsce jest zajete czy nie na podstawie daty i tytułu filmu
 const getReservation = (req, res) => {
+    console.log(req.params.title);
     Schema
-    .find({}, (err, schemas) => {
+    .find({title: req.params.title, date: req.params.date}, (err, schemas) => {
         if (err) console.log(err);
+        console.log(schemas);
         res.send(schemas)
     })
     

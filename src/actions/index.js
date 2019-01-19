@@ -39,3 +39,10 @@ export const getDate = (date) => {
         payload: date
     }
 }
+
+export const getBookedSeat = (bookedSeats) => {
+    return{
+        type: 'BOOKED_SEATS',
+        payload: bookedSeats
+    }
+}

@@ -35,10 +35,18 @@ const getDateReducer = (state=null, action) => {
     return state;
 }
 
+const getBookedSeatsReducer = (state = null, action) => {
+    if(action.type === 'BOOKED_SEATS'){
+        return action.payload;   
+}
+    return state;
+}
+
 export default combineReducers({
     seatsSelected: selectedSeatNumReducer,
     isRegisterClicked: isRegisterClickedReducer,
     movies: fetchMoviesReducer,
     idOfMovie: getIdOfMovieReducer,
-    date: getDateReducer
+    date: getDateReducer,
+    bookedSeats: getBookedSeatsReducer
 });

@@ -8,7 +8,6 @@ class Cinema extends React.Component{
     constructor(props){
         super(props)
 
-        
         this.state = {
             seat: [],
             bookedSeats: []       
@@ -16,14 +15,33 @@ class Cinema extends React.Component{
 }
 
     async componentDidMount(){
-        const response = await Fetch.zwrocZarezerwowane();
-        this.setState({bookedSeats: response});
-        this.checkIfBooked();
+        // const response = await Fetch.zwrocZarezerwowane('Ojciec Chrzestny', '19.01.2019');
+        // this.setState({bookedSeats: response});
+        
+    }
+
+    componentWillUpdate(){
+        
     }
 
     componentDidUpdate(){
         this.props.getSeatNum(this.state.seat);
-        
+        this.checkIfBooked();
+    }
+
+    static getDerivedStateFromProps(props, state){
+        if(props.bookedSeats !== state.bookedSeats){
+            
+            const bookedSeats = document.querySelectorAll('.bookedSeat');
+
+            for(let i=0;i<bookedSeats.length;i++){
+                bookedSeats[i].classList.remove('bookedSeat');
+                bookedSeats[i].textContent = bookedSeats[i].id.slice(1);
+            }
+
+            return {bookedSeats: props.bookedSeats}
+        }
+        else return null;
     }
 
     checkIfClicked(arr, clickedValue){
@@ -38,7 +56,7 @@ class Cinema extends React.Component{
         for(let i = 0; i<50; i++){
             for(let j = 0; j<this.state.bookedSeats.length; j++){
                 if(seats[i].id===this.state.bookedSeats[j]){
-                    seats[i].classList.toggle('bookedSeat');
+                    seats[i].classList.add('bookedSeat');
                     seats[i].textContent = '';
                 }
             }
@@ -112,6 +130,7 @@ class Cinema extends React.Component{
     }
 
     render(){
+        console.log(this.state.bookedSeats);
         return (
                     <div className='cinema'>
                         <div className='screen'><h1>EKRAN</h1></div>
@@ -122,7 +141,11 @@ class Cinema extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-    return state;
+    return {
+        seatsSelected: state.seatsSelected,
+        isRegisterClicked: state.isRegisterClicked,
+        bookedSeats: state.bookedSeats
+    };
 }
 
 export default connect(mapStateToProps, {getSeatNum})(Cinema);

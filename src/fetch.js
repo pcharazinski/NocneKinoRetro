@@ -23,9 +23,9 @@ class Fetch {
 }
 
 
-    static async pobierzDane() {
+    static async pobierzDane(title, date) {
         try {
-          const rezerwacje = await fetch('/getreservation');
+          const rezerwacje = await fetch(`/getreservation/${title}/${date}`);
         //   console.log(rezerwacje);
           const rezerwacjeJson = await rezerwacje.json();
         //   console.log(rezerwacjeJson);
@@ -37,10 +37,10 @@ class Fetch {
     }
 
 
-    static async zwrocZarezerwowane(){
+    static async zwrocZarezerwowane(title, date){
         var miejsca = [];
       
-        await this.pobierzDane().then(res => {
+        await this.pobierzDane(title, date).then(res => {
           res.forEach(rezerwacja => {
             if (rezerwacja.isReserved === true){
               miejsca.push((rezerwacja.seat));
