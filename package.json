@@ -18,7 +18,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "react-scripts start",
     "front": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
